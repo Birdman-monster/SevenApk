@@ -6,6 +6,7 @@ type CustomLocation = {
     latitude: number;
     longitude: number;
     address: string;
+     heading?: number;
 } | null;
 
 interface RiderStoreProps {
