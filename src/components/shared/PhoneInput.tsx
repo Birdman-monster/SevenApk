@@ -44,9 +44,10 @@ const styles = StyleSheet.create({
     gap: 4,
     marginVertical: 15,
     borderWidth: 1,
-    borderColor: "yellow",
+    borderColor: "black",
     borderRadius: 0,
     paddingHorizontal: 10,
+    color:"black"
   },
   input: {
     fontSize: RFValue(13),
@@ -57,7 +58,7 @@ const styles = StyleSheet.create({
     height: 45,
     width: "90%",
     // Ajoutez une couleur de texte pour que l'entrée de l'utilisateur soit visible
-    color: '#ffff', // Exemple: couleur noire
+    color: '#000', // Exemple: couleur noire
   },
   text: {
     fontSize: RFValue(13),

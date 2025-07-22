@@ -1,14 +1,11 @@
-import React from 'react';
-import { Text, View } from 'react-native';
+import { Text, View } from "react-native";
 
 const RiderHome = () => {
-    return (
-        <View>
-            <Text>RiderHome</Text>
-        </View>
-    )
-}
+  return (
+    <View>
+      <Text>Bienvenue, Chauffeur !</Text>
+    </View>
+  );
+};
 
-
-
-export default RiderHome
+export default RiderHome; // ✅ très important

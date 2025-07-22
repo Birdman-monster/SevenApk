@@ -17,13 +17,13 @@
       "supportsTablet": true,
       "bundleIdentifier": "com.bernard.theseven",
       "config": {
-        "googleMapsApiKey": "YOUR_GOOGLE_MAP_API_KEY"
+        "googleMapsApiKey": "AIzaSyAmpOb9EETg4niHh9p0UMuLS89K3MPBcrs"
       }
     },
     "android": {
       "config": {
         "googleMaps": {
-          "apiKey": "YOUR_GOOGLE_MAP_API_KEY"
+          "apiKey": "AIzaSyAmpOb9EETg4niHh9p0UMuLS89K3MPBcrs"
         }
       },
       "adaptiveIcon": {

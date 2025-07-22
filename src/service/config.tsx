@@ -1,18 +1,13 @@
 import { Platform } from "react-native";
 
-export const BASE_URL = Platform.OS === 'ios' ?
-    'http://localhost:3000' :
-    'http://10.0.2.2:3000'
+// Adresse IP locale de ton PC (trouvée avec `ipconfig` dans le terminal)
+const LOCAL_IP = "http://192.168.1.24:3000"; // ← remplace par ton IP réelle si besoin
 
-export const SOCKET_URL = Platform.OS === 'ios' ?
-    'ws://localhost:3000' :
-    'ws://10.0.2.2:3000'
-    
+// Configuration des URLs selon la plateforme
+export const BASE_URL =
+  Platform.OS === "android"
+    ? "http://192.168.1.24:3000"// pour les émulateurs Android
+    : LOCAL_IP;              // pour iOS ou téléphone réel
 
-// USE YOUR NETWORK IP OR HOSTED URL
-// export const BASE_URL = 'http://192.168.29.236:3000'
-
-// export const SOCKET_URL = Platform.OS === 'ios' ?
-//     'ws://192.168.29.236:3000' :
-//     'http://10.0.2.2:3000'
-    
+// Socket.io utilise la même URL que BASE_URL
+export const SOCKET_URL = BASE_URL;

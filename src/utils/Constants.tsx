@@ -6,12 +6,12 @@ export const screenWidth = Dimensions.get('screen').width
 
 export enum Colors {
     primary = '#EDD228',
-    background = 'black',
-    text = 'yellow',
+    background = '#ffff',
+    text = 'black',
     theme = '#CF551F',
     secondary = '#E5EBF5',
     tertiary = '#3C75BE',
     secondary_light='#F6F7F9',
-    iosColor='#007AFF'
+    iosColor='#000102ff'
 }
 

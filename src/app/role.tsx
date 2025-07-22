@@ -1,7 +1,6 @@
 import CustomText from "@/components/shared/CustomText";
 import { roleStyles } from "@/styles/roleStyles";
 import { router } from "expo-router";
-import React from "react";
 import { Image, TouchableOpacity, View } from "react-native";
 
 const Role = () => {

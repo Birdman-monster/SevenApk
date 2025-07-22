@@ -4,7 +4,7 @@ export const customMapStyle = [
     "elementType": "labels",
     "stylers": [
       {
-        "visibility": "off"
+        "visibility": "on"
       }
     ]
   },
@@ -13,7 +13,7 @@ export const customMapStyle = [
     "elementType": "labels.text",
     "stylers": [
       {
-        "visibility": "off"
+        "visibility": "on"
       }
     ]
   },
@@ -21,7 +21,7 @@ export const customMapStyle = [
     "featureType": "poi.business",
     "stylers": [
       {
-        "visibility": "off"
+        "visibility": "on"
       }
     ]
   },
@@ -30,7 +30,7 @@ export const customMapStyle = [
     "elementType": "labels.icon",
     "stylers": [
       {
-        "visibility": "off"
+        "visibility": "on"
       }
     ]
   },
@@ -39,7 +39,7 @@ export const customMapStyle = [
     "elementType": "labels",
     "stylers": [
       {
-        "visibility": "off"
+        "visibility": "on"
       }
     ]
   },
@@ -47,7 +47,7 @@ export const customMapStyle = [
     "featureType": "transit",
     "stylers": [
       {
-        "visibility": "off"
+        "visibility": "on"
       }
     ]
   }

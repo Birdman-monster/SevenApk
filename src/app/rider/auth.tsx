@@ -6,14 +6,14 @@ import { useWS } from "@/service/WSProvider";
 import { authStyles } from "@/styles/authStyles";
 import { commonStyles } from "@/styles/commonStyles";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
-import React, { useState } from "react";
+import { useState } from "react";
 import {
-    Alert,
-    Image,
-    SafeAreaView,
-    ScrollView,
-    TouchableOpacity,
-    View
+  Alert,
+  Image,
+  SafeAreaView,
+  ScrollView,
+  TouchableOpacity,
+  View
 } from "react-native";
 
 const AuthRider = () => {
