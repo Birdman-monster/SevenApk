@@ -147,10 +147,10 @@ const MapPickerModal: FC<MapPickerModalProps> = ({
       onRequestClose={onClose}
     >
       <View style={modalStyles?.modalContainer}>
-        <Text style={modalStyles?.centerText}>Select {title}</Text>
+        <Text style={modalStyles?.centerText}>Selectionner un lieu</Text>
 
         <TouchableOpacity onPress={onClose}>
-          <Text style={modalStyles?.cancelButton}>Cancel</Text>
+          <Text style={modalStyles?.cancelButton}>Annuler</Text>
         </TouchableOpacity>
 
         <View style={modalStyles.searchContainer}>
@@ -158,7 +158,7 @@ const MapPickerModal: FC<MapPickerModalProps> = ({
           <TextInput
             ref={textInputRef}
             style={modalStyles?.input}
-            placeholder="Search address"
+            placeholder="Rechercher une adresse"
             placeholderTextColor="#aaa"
             value={text}
             onChangeText={(e) => {
@@ -174,7 +174,7 @@ const MapPickerModal: FC<MapPickerModalProps> = ({
               <View>
                 {text.length > 4 ? null : (
                   <Text style={{ marginHorizontal: 16 }}>
-                    Enter at least 4 characters to search
+                    Entrez au moins 4 caractères pour rechercher
                   </Text>
                 )}
               </View>
@@ -222,7 +222,7 @@ const MapPickerModal: FC<MapPickerModalProps> = ({
               <View style={mapStyles.centerMarkerContainer}>
                 <Image
                   source={
-                    title == "drop"
+                    title == "Drop"
                       ? require("@/assets/icons/drop_marker.png")
                       : require("@/assets/icons/marker.png")
                   }
@@ -243,7 +243,7 @@ const MapPickerModal: FC<MapPickerModalProps> = ({
 
             <View style={modalStyles?.footerContainer}>
               <Text style={modalStyles.addressText} numberOfLines={2}>
-                {address === "" ? "Getting address..." : address}
+                {address === "" ? "Obtenir une adresse..." : address}
               </Text>
               <View style={modalStyles.buttonContainer}>
                 <TouchableOpacity
@@ -258,7 +258,7 @@ const MapPickerModal: FC<MapPickerModalProps> = ({
                     onClose();
                   }}
                 >
-                  <Text style={modalStyles.buttonText}>Set Address</Text>
+                  <Text style={modalStyles.buttonText}>Définir l'adresse</Text>
                 </TouchableOpacity>
               </View>
             </View>

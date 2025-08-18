@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import React, { useEffect } from "react";
 import { useWS } from "@/service/WSProvider";
-import { riderStore } from "@/store/riderStore";
+import { useRiderStore } from "@/store/riderStore";
 import { useIsFocused } from "@react-navigation/native";
 import * as Location from "expo-location";
 import { riderStyles } from "@/styles/riderStyles";
@@ -21,7 +21,7 @@ import { Colors } from "@/utils/Constants";
 
 const RiderHeader = () => {
   const { disconnect, emit } = useWS();
-  const { setOnDuty, onDuty, setLocation } = riderStore();
+  const { setOnDuty, onDuty, setLocation } = useRiderStore();
   const isFocused = useIsFocused();
 
   const toggleOnDuty = async () => {
@@ -81,7 +81,7 @@ const RiderHeader = () => {
               fontSize={12}
               style={{ color: "#888" }}
             >
-              {onDuty ? "ON-DUTY" : "OFF-DUTY"}
+              {onDuty ? "ACTIVER" : "DESACTIVER"}
             </CustomText>
 
             <Image
@@ -109,7 +109,7 @@ const RiderHeader = () => {
             style={{ color: "#fff" }}
             fontFamily="Medium"
           >
-            50031.22 XAF
+             0 XAF
           </CustomText>
           <MaterialIcons name="arrow-drop-down" size={24} color="#fff" />
         </View>

@@ -33,7 +33,7 @@ const RiderActionButton: FC<{
           numberOfLines={1}
           fontFamily="Medium"
         >
-          Meet the Customer
+          Rencontrez le client
         </CustomText>
         <CustomText
           fontSize={11}
@@ -41,7 +41,7 @@ const RiderActionButton: FC<{
           numberOfLines={1}
           fontFamily="Medium"
         >
-          +91{" "}
+          +237{" "}
           {ride?.customer?.phone &&
             ride?.customer?.phone?.slice(0, 5) +
               " " +

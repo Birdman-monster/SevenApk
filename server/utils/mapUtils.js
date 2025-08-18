@@ -5,38 +5,40 @@ export const calculateDistance = (lat1, lon1, lat2, lon2) => {
   const a =
     Math.sin(dLat / 2) * Math.sin(dLat / 2) +
     Math.cos(lat1 * (Math.PI / 180)) *
-      Math.cos(lat2 * (Math.PI / 180)) *
-      Math.sin(dLon / 2) *
-      Math.sin(dLon / 2);
+    Math.cos(lat2 * (Math.PI / 180)) *
+    Math.sin(dLon / 2) *
+    Math.sin(dLon / 2);
   const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
   return R * c;
 };
 
 export const calculateFare = (distance) => {
   const rateStructure = {
-    sevenCity: { perKmRate: 400, minimumFare: 2500 },
-    sevenFlex: { perKmRate: 600, minimumFare: 5000 },
-    sevenVip: { perKmRate: 2500, minimumFare: 25000 },
+    sevenCity: { baseFare: 400, perKmRate: 60, minimumFare: 800 },
+    sevenFlex: { baseFare: 500, perKmRate: 80, minimumFare: 1000 },
+    sevenVip: { baseFare: 1000, perKmRate: 90, minimumFare: 2000 },
   };
 
   // On applique la logique : distance effective = aller + moitié retour = distance * 1.5
-  const effectiveDistance = distance * 1.5;
-
-  const fareCalculation = (perKmRate, minimumFare) => {
-    const calculatedFare = effectiveDistance * perKmRate;
+  const fareCalculation = (baseFare, perKmRate, minimumFare) => {
+    const calculatedFare = baseFare + distance * perKmRate;
     return Math.max(calculatedFare, minimumFare);
   };
 
+
   return {
     sevenCity: fareCalculation(
+      rateStructure.sevenCity.baseFare,
       rateStructure.sevenCity.perKmRate,
       rateStructure.sevenCity.minimumFare
     ),
     sevenFlex: fareCalculation(
+      rateStructure.sevenFlex.baseFare,
       rateStructure.sevenFlex.perKmRate,
       rateStructure.sevenFlex.minimumFare
     ),
     sevenVip: fareCalculation(
+      rateStructure.sevenVip.baseFare,
       rateStructure.sevenVip.perKmRate,
       rateStructure.sevenVip.minimumFare
     ),

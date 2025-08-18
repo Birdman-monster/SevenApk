@@ -133,13 +133,13 @@ const LocationSelection = () => {
       >
         <Ionicons name="chevron-back" size={24} color={Colors.iosColor} />
         <CustomText fontFamily="Regular" style={{ color: Colors.iosColor }}>
-          Back
+          Retour
         </CustomText>
       </TouchableOpacity>
 
       <View style={uiStyles.locationInputs}>
         <LocationInput
-          placeholder="Search Pickup Location"
+          placeholder="Lieu de prise en charge"
           type="pickup"
           value={pickup}
           onChangeText={(text) => {
@@ -150,7 +150,7 @@ const LocationSelection = () => {
         />
 
         <LocationInput
-          placeholder="Search Drop Location"
+          placeholder="Destination"
           type="drop"
           value={drop}
           onChangeText={(text) => {
@@ -165,7 +165,7 @@ const LocationSelection = () => {
           fontSize={10}
           style={uiStyles.suggestionText}
         >
-          {focusedInput} suggestions
+          suggestions de lieux 
         </CustomText>
       </View>
 
@@ -188,7 +188,7 @@ const LocationSelection = () => {
               style={uiStyles.mapPinIcon}
             />
             <CustomText fontFamily="Medium" fontSize={12}>
-              Select from Map
+              Sélectionner un lieu sur la carte
             </CustomText>
           </TouchableOpacity>
         }

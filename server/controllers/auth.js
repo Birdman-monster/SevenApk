@@ -1,18 +1,20 @@
+// controllers/auth.js
 import { StatusCodes } from "http-status-codes";
 import jwt from "jsonwebtoken";
 import { BadRequestError, UnauthenticatedError } from "../errors/index.js";
 import User from "../models/User.js";
 
+
+
+// ✅ Authentification (après vérification OTP côté client)
 export const auth = async (req, res) => {
-  const { phone, role } = req.body;
+  const { phone, role, firstName, lastName } = req.body;
 
   if (!phone) {
-     console.log("❌ Aucun numéro fourni");
     throw new BadRequestError("Phone number is required");
   }
 
   if (!role || !["customer", "rider"].includes(role)) {
-    console.log("❌ Rôle invalide :", role);
     throw new BadRequestError("Valid role is required (customer or rider)");
   }
 
@@ -35,11 +37,7 @@ export const auth = async (req, res) => {
       });
     }
 
-    user = new User({
-      phone,
-      role,
-    });
-
+    user = new User({ phone, role, firstName, lastName });
     await user.save();
 
     const accessToken = user.createAccessToken();
@@ -52,13 +50,15 @@ export const auth = async (req, res) => {
       refresh_token: refreshToken,
     });
   } catch (error) {
-     console.error("❌ Erreur auth:", error);
+    console.error("❌ Erreur auth:", error);
     throw error;
   }
 };
 
+// ✅ Refresh Token
 export const refreshToken = async (req, res) => {
   const { refresh_token } = req.body;
+
   if (!refresh_token) {
     throw new BadRequestError("Refresh token is required");
   }
@@ -83,3 +83,7 @@ export const refreshToken = async (req, res) => {
     throw new UnauthenticatedError("Invalid refresh token");
   }
 };
+
+
+
+

@@ -10,6 +10,9 @@ export const signin = async (
   payload: {
     role: "customer" | "rider";
     phone: string;
+    firstName: string;
+    lastName: string;
+
   },
   updateAccessToken: () => void
 ) => {

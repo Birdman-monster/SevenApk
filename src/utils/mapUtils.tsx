@@ -130,48 +130,55 @@ export const calculateDistance = (lat1: number, lon1: number, lat2: number, lon2
  * Calcule le tarif estimé pour chaque type de véhicule.
  * - Pour les dépôts (par kilomètre) : on considère que le chemin aller est compté à moitié.
  * - Pour les commandes horaires : tarif à l’heure fixe.
+ * sevenCity: { baseFare: 400, perKmRate: 60, minimumFare: 800 },
+    sevenFlex: { baseFare: 500, perKmRate: 80, minimumFare: 1000 },
+    sevenVip: { baseFare: 1000, perKmRate: 90, minimumFare: 2000 },
  */
-export const calculateFare = (
-    distance: number,
-    serviceType: 'depot' | 'commande' = 'depot' // 'depot' (par km) ou 'commande' (par heure)
-) => {
-    if (serviceType === 'commande') {
-        return {
-            sevenCity: 3500,   // à l'heure
-            sevenFlex: 5000,
-            sevenVip: 10000,
-        };
-    }
+export const calculateFare = (distance: number) => {
+  const rateStructure = {
+    sevenCity: {
+      baseFare: 400,
+      perKmRate: 60,
+      minimumFare: 800,
+    },
+    sevenFlex: {
+      baseFare: 500,
+      perKmRate: 80,
+      minimumFare: 1000,
+    },
+    sevenVip: {
+      baseFare: 1000,
+      perKmRate: 90,
+      minimumFare: 2000,
+    },
+  };
 
-    // Si c’est un dépôt, on applique les règles spécifiques par véhicule
-    const rateStructure = {
-        sevenCity: {
-            perKmRate: 400,
-            minimumFare: 400,
-        },
-        sevenFlex: {
-            perKmRate: 600,
-            minimumFare: 600,
-        },
-        sevenVip: {
-            perKmRate: 2500,
-            minimumFare: 600,
-        },
-    };
+  const fareCalculation = (
+    baseFare: number,
+    perKmRate: number,
+    minimumFare: number
+  ) => {
+    const calculatedFare = baseFare + distance * perKmRate;
+    return Math.max(calculatedFare, minimumFare);
+  };
 
-    // Distance tarifée = distance aller + moitié du chemin aller (aller-retour à moitié prix)
-    const effectiveDistance = distance * 1.5;
-
-    const fareCalculation = (perKmRate: number, minimumFare: number) => {
-        const calculatedFare = effectiveDistance * perKmRate;
-        return Math.max(calculatedFare, minimumFare);
-    };
-
-    return {
-        sevenCity: fareCalculation(rateStructure.sevenCity.perKmRate, rateStructure.sevenCity.minimumFare),
-        sevenFlex: fareCalculation(rateStructure.sevenFlex.perKmRate, rateStructure.sevenFlex.minimumFare),
-        sevenVip: fareCalculation(rateStructure.sevenVip.perKmRate, rateStructure.sevenVip.minimumFare),
-    };
+  return {
+    sevenCity: fareCalculation(
+      rateStructure.sevenCity.baseFare,
+      rateStructure.sevenCity.perKmRate,
+      rateStructure.sevenCity.minimumFare
+    ),
+    sevenFlex: fareCalculation(
+      rateStructure.sevenFlex.baseFare,
+      rateStructure.sevenFlex.perKmRate,
+      rateStructure.sevenFlex.minimumFare
+    ),
+    sevenVip: fareCalculation(
+      rateStructure.sevenVip.baseFare,
+      rateStructure.sevenVip.perKmRate,
+      rateStructure.sevenVip.minimumFare
+    ),
+  };
 };
 
 
@@ -239,7 +246,7 @@ export const getPoints = (places: any) => {
  * Dictionnaire des icônes selon le type de véhicule.
  */
 export const vehicleIcons: Record< | 'sevenCity' | 'sevenFlex' | 'sevenVip', { icon: any }> = {
-    sevenCity: { icon: require('@/assets/icons/auto.png') },
-    sevenFlex: { icon: require('@/assets/icons/cab.png') },
-    sevenVip: { icon: require('@/assets/icons/cab_premium.png') },
+    sevenCity: { icon: require('@/assets/icons/cab.png') },
+    sevenFlex: { icon: require('@/assets/icons/seven-flex.png') },
+    sevenVip: { icon: require('@/assets/icons/seven-vip.png') },
 };

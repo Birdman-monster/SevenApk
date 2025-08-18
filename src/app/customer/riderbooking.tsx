@@ -18,7 +18,7 @@ const RideBooking = () => {
   const route = useRoute() as any;
   const item = route?.params as any;
   const { location } = userStore() as any;
-  const [selectedOption, setSelectedOption] = useState("Bike");
+  const [selectedOption, setSelectedOption] = useState("City");
   const [loading, setLoading] = useState(false);
 
   const farePrices = useMemo(
@@ -33,7 +33,6 @@ const RideBooking = () => {
         type: "City",
         seats: 4,
         time: "1 min",
-        dropTime: "4:28 pm",
         price: farePrices.sevenCity,
         icon: require("@/assets/icons/cab.png"),
       },
@@ -41,17 +40,15 @@ const RideBooking = () => {
         type: "Flex",
         seats: 4,
         time: "1 min",
-        dropTime: "4:30 pm",
         price: farePrices.sevenFlex,
-        icon: require("@/assets/icons/cab_premium.png"),
+        icon: require("@/assets/icons/seven-flex.png"),
       },
        {
         type: "Vip",
         seats: 4,
         time: "1 min",
-        dropTime: "4:28 pm",
         price: farePrices.sevenVip,
-        icon: require("@/assets/icons/cab.png"),
+        icon: require("@/assets/icons/seven-vip.png"),
       },
     ],
     [farePrices]
@@ -66,12 +63,12 @@ const RideBooking = () => {
 
     await createRide({
       vehicle:
-        selectedOption === "sevenCity"
-          ? "sevenCity"
-          : selectedOption === "sevenFlex"
-          ? "sevenFlex"
-          : selectedOption === "sevenVip"
+        selectedOption === "Vip"
           ? "sevenVip"
+          : selectedOption === "Flex"
+          ? "sevenFlex"
+          : selectedOption === "Vip"
+          ? "sevenCity"
           : "sevenCity",
       drop: {
         latitude: parseFloat(item.drop_latitude),
@@ -108,7 +105,7 @@ const RideBooking = () => {
       <View style={rideStyles.rideSelectionContainer}>
         <View style={rideStyles?.offerContainer}>
           <CustomText fontSize={12} style={rideStyles.offerText}>
-           Trajet gratuit apres a la 6ieme commande!
+           Trajet gratuit après 06 commandes !
           </CustomText>
         </View>
 
@@ -153,7 +150,7 @@ const RideBooking = () => {
             />
             <View>
               <CustomText fontFamily="Medium" fontSize={12}>
-                Cash
+                CASH
               </CustomText>
               <CustomText
                 fontFamily="Medium"
@@ -172,15 +169,8 @@ const RideBooking = () => {
               style={rideStyles.icon}
             />
             <View>
-              <CustomText fontFamily="Medium" fontSize={12}>
-                DHANOO
-              </CustomText>
-              <CustomText
-                style={{ opacity: 0.7 }}
-                fontFamily="Medium"
-                fontSize={10}
-              >
-                Coupon Applied
+              <CustomText fontFamily="Medium" fontSize={10}>
+                PAIEMENT MOBILE
               </CustomText>
             </View>
             <Ionicons name="chevron-forward" size={RFValue(14)} color="#777" />
@@ -188,7 +178,7 @@ const RideBooking = () => {
         </View>
 
         <CustomButton
-          title="Book Ride"
+          title="Commander"
           disabled={loading}
           loading={loading}
           onPress={handleRideBooking}
@@ -217,7 +207,7 @@ const RideOption = memo(({ ride, selected, onSelect }: any) => (
           )}
         </CustomText>
         <CustomText fontSize={10}>
-          {ride?.seats} seats • {ride?.time} away • Drop {ride?.dropTime}
+          {ride?.seats} seats • {ride?.time} away {ride?.dropTime}
         </CustomText>
       </View>
 

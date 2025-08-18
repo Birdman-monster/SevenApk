@@ -92,7 +92,7 @@ const Main = () => {
       const timeoutId = setTimeout(() => {
         tokenCheck();
         setHasNavigated(true);
-      }, 1000);
+      }, 5000);
       return () => clearTimeout(timeoutId);
     }
   }, [loaded, hasNavigated, user]);
@@ -101,15 +101,17 @@ const Main = () => {
 
   return (
     <View style={commonStyles.container}>
+
       <Image
-        source={require("@/assets/images/logo.png")}
+        source={require("@/assets/images/sevengif.gif")}
         style={splashStyles.img}
       />
-      <CustomText variant="h5" fontFamily="Medium" style={splashStyles.text}>
-        TheSeven — notre vision, votre confort...
+      <CustomText variant="h5" fontFamily="Bold" style={splashStyles.text}>
+       Un instant...
       </CustomText>
     </View>
   );
 };
 
 export default Main;
+

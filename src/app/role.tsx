@@ -15,16 +15,16 @@ const Role = () => {
   return (
     <View style={roleStyles.container}>
       <Image
-        source={require("@/assets/images/logo.png")}
+        source={require("@/assets/images/seven.png")}
         style={roleStyles.logo}
       />
-      <CustomText fontFamily="Medium" variant="h6">
+      <CustomText fontFamily="bold" variant="h6">
         Choisissez votre type d'utilisateur
       </CustomText>
 
       <TouchableOpacity style={roleStyles.card} onPress={handleCustomerPress}>
         <Image
-          source={require("@/assets/images/customer.jpg")}
+          source={require("@/assets/images/seven-client.png")}
           style={roleStyles.image}
         />
         <View style={roleStyles.cardContent}>
@@ -37,7 +37,7 @@ const Role = () => {
 
       <TouchableOpacity style={roleStyles.card} onPress={handleRiderPress}>
         <Image
-          source={require("@/assets/images/rider.jpg")}
+          source={require("@/assets/images/seven-conducteur.png")}
           style={roleStyles.image}
         />
         <View style={roleStyles.cardContent}>

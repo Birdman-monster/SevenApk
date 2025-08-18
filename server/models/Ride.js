@@ -6,7 +6,7 @@ const rideSchema = new Schema(
   {
     vehicle: {
       type: String,
-      enum: ["sevenCity", "cabEconomy", "sevenVip"],
+      enum: ["sevenCity", "sevenFlex", "sevenVip"],
       required: true,
     },
     distance: {

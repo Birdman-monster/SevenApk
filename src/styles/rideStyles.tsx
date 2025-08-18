@@ -104,6 +104,8 @@ export const rideStyles = StyleSheet.create({
     },
     offerText: {
         textAlign: 'center',
+        fontFamily:'Bold'
+
     },
     offerContainer: {
         paddingVertical: 15,

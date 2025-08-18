@@ -1,6 +1,7 @@
 import CustomButton from "@/components/shared/CustomButton";
 import CustomText from "@/components/shared/CustomText";
 import PhoneInput from "@/components/shared/PhoneInput";
+import TextField from "@/components/shared/TextField";
 import { signin } from "@/service/authService";
 import { useWS } from "@/service/WSProvider";
 import { authStyles } from "@/styles/authStyles";
@@ -13,19 +14,31 @@ import {
   SafeAreaView,
   ScrollView,
   TouchableOpacity,
-  View
+  View,
 } from "react-native";
 
 const Auth = () => {
   const { updateAccessToken } = useWS();
   const [phone, setPhone] = useState("");
 
+  // --- Nouveaux états pour le nom et le prénom ---
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+
+
   const handleNext = async () => {
-    if (!phone && phone.length !== 10) {
-      Alert.alert("Entrez votre numero de numero de telephone");
+    if (!firstName.trim() || !lastName.trim()) {
+      Alert.alert("Veuillez entrer votre prénom et nom");
       return;
     }
-    signin({ role: "customer", phone }, updateAccessToken);
+
+    if (!phone || phone.length !== 9) {
+      Alert.alert("Entrez un numéro de téléphone valide (9 chiffres)");
+      return;
+      
+    }
+
+    signin({ role: "customer", phone, firstName, lastName }, updateAccessToken);
   };
 
   return (
@@ -33,13 +46,13 @@ const Auth = () => {
       <ScrollView contentContainerStyle={authStyles.container}>
         <View style={commonStyles.flexRowBetween}>
           <Image
-            source={require("@/assets/images/logo.png")}
+            source={require("@/assets/images/seven.png")}
             style={authStyles.logo}
           />
           <TouchableOpacity style={authStyles.flexRowGap}>
             <MaterialIcons name="help" size={18} color="grey" />
             <CustomText fontFamily="Medium" variant="h7">
-             Aide
+              Aide
             </CustomText>
           </TouchableOpacity>
         </View>
@@ -57,6 +70,20 @@ const Auth = () => {
         </CustomText>
 
         <PhoneInput onChangeText={setPhone} value={phone} />
+        <TextField
+          label="Nom"
+          value={lastName}
+          onChangeText={setLastName}
+            error={lastName.trim() === "" ? "Nom requis" : ""}
+        />
+
+        <TextField
+          label="Prénom"
+          value={firstName}
+          onChangeText={setFirstName}
+            error={lastName.trim() === "" ? "Prenom requis" : ""}
+        />
+
       </ScrollView>
 
       <View style={authStyles.footerContainer}>
@@ -74,10 +101,14 @@ const Auth = () => {
           onPress={handleNext}
           loading={false}
           disabled={false}
+
         />
       </View>
     </SafeAreaView>
   );
 };
+
+
+
 
 export default Auth;

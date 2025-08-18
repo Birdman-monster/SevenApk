@@ -3,8 +3,8 @@ import { StyleSheet } from "react-native";
 
 export const splashStyles = StyleSheet.create({
     img: {
-        width: screenWidth * 0.4,
-        height: screenHeight * 0.4,
+        width: screenWidth * 1.0,
+        height: screenHeight * 1.0,
         resizeMode: 'contain'
     },
     text: {

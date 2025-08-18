@@ -7,8 +7,19 @@ import { FontAwesome6, MaterialCommunityIcons } from "@expo/vector-icons";
 import { RFValue } from "react-native-responsive-fontsize";
 import { mapStyles } from "@/styles/mapStyles";
 import MapViewDirections from "react-native-maps-directions";
-import { Colors } from "react-native/Libraries/NewAppScreen";
+// import { Colors } from "react-native/Libraries/NewAppScreen"; // <-- Cette ligne est supprimée
 import { getPoints } from "@/utils/mapUtils";
+
+// Importez ou définissez vos propres couleurs ici
+// Option 1 : Créez un fichier de couleurs si vous ne l'avez pas déjà
+// Par exemple : import { AppColors } from "@/constants/colors";
+// Si vous n'avez pas de fichier de couleurs, vous pouvez les définir ici temporairement
+const AppColors = {
+  primaryBlue: '#3C75BE', // Utilisation d'un nom plus spécifique
+  textColor: '#000000',   // Noir, comme souvent pour le texte
+  // Ajoutez d'autres couleurs si nécessaire
+};
+
 
 const apikey = process.env.EXPO_PUBLIC_MAP_API_KEY || "";
 
@@ -73,10 +84,12 @@ const RiderLiveTracking: FC<{
         longitudeDelta: 0.05,
       };
     }
-    return indiaIntialRegion;
+    return indiaIntialRegion; // Assurez-vous que indiaIntialRegion est toujours une valeur valide
   };
 
   useEffect(() => {
+    // Correction: fitToMarkers peut être appelé ici ou dans onMapReady pour s'assurer que la carte est prête
+    // Mais pour les props qui changent, c'est OK ici.
     if (pickup?.latitude && drop?.latitude) fitToMarkers();
   }, [drop?.latitude, pickup?.latitude, rider.latitude]);
 
@@ -102,8 +115,8 @@ const RiderLiveTracking: FC<{
             destination={status === "START" ? rider : drop}
             onReady={fitToMarkersWithDelay}
             apikey={apikey}
-            strokeColor={Colors.iosColor}
-            strokeColors={[Colors.iosColor]}
+            strokeColor={AppColors.primaryBlue} // <-- Utilise votre couleur définie
+            strokeColors={[AppColors.primaryBlue]} // <-- Utilise votre couleur définie
             strokeWidth={5}
             precision="low"
             onError={(error) => console.log("Directions error:", error)}
@@ -160,7 +173,7 @@ const RiderLiveTracking: FC<{
         {drop && pickup && (
           <Polyline
             coordinates={getPoints([drop, pickup])}
-            strokeColor={Colors.text}
+            strokeColor={AppColors.textColor} // <-- Utilise votre couleur définie
             strokeWidth={2}
             geodesic={true}
             lineDashPattern={[12, 10]}

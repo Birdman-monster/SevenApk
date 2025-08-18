@@ -95,7 +95,7 @@ const RiderHome = () => {
 
   return (
     <View style={homeStyles.container}>
-      <StatusBar style="light" backgroundColor="orange" translucent={false} />
+      <StatusBar style="light" backgroundColor="#f1a701" translucent={false} />
       <RiderHeader />
 
       <FlatList
@@ -107,13 +107,13 @@ const RiderHome = () => {
         ListEmptyComponent={
           <View style={riderStyles?.emptyContainer}>
             <Image
-              source={require("@/assets/icons/ride.jpg")}
+              source={require("@/assets/icons/car.png")}
               style={riderStyles?.emptyImage}
             />
             <CustomText fontSize={12} style={{ textAlign: "center" }}>
               {onDuty
-                ? "There are no available rides! Stay Active"
-                : "You're currently OFF-DUTY, please go ON-DUTY to start earning"}
+                ? "Aucun trajet disponible ! Restez actif"
+                : "Vous êtes actuellement HORS SERVICE, veuillez passer en SERVICE pour commencer à gagner"}
             </CustomText>
           </View>
         }

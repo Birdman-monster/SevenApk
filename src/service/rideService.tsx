@@ -52,7 +52,7 @@ export const acceptRideOffer = async (rideId: string) => {
   try {
     const res = await appAxios.patch(`/ride/accept/${rideId}`);
     resetAndNavigate({
-      pathname: "/",
+      pathname: "/rider/liveride",
       params: { id: rideId },
     });
   } catch (error: any) {

@@ -12,6 +12,16 @@ const UserSchema = new mongoose.Schema({
     enum: ['customer', 'rider'],
     required: true,
   },
+  firstName: {
+    type: String,
+    required: false,
+    trim: true,
+  },
+  lastName: {
+    type: String,
+    required: false,
+    trim: true,
+  },
 }, { timestamps: true });
 
 // Méthode pour créer un access token

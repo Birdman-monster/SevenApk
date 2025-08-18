@@ -33,7 +33,7 @@ const AuthRider = () => {
       <ScrollView contentContainerStyle={authStyles.container}>
         <View style={commonStyles.flexRowBetween}>
           <Image
-            source={require("@/assets/images/logo.png")}
+            source={require("@/assets/images/seven.png")}
             style={authStyles.logo}
           />
           <TouchableOpacity style={authStyles.flexRowGap}>

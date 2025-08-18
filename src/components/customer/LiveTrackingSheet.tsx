@@ -51,7 +51,7 @@ const LiveTrackingSheet: FC<{ item: RideItem }> = ({ item }) => {
 
         {item?.rider?.phone && (
           <CustomText fontSize={11} numberOfLines={1} fontFamily="Medium">
-            +91{" "}
+            +237{" "}
             {item?.rider?.phone &&
               item?.rider?.phone?.slice(0, 5) +
                 " " +
