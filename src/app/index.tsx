@@ -103,7 +103,7 @@ const Main = () => {
     <View style={commonStyles.container}>
 
       <Image
-        source={require("@/assets/images/sevengif.gif")}
+        source={require("@/assets/images/gif.gif")}
         style={splashStyles.img}
       />
       <CustomText variant="h5" fontFamily="Bold" style={splashStyles.text}>

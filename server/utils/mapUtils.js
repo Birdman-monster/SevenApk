@@ -14,9 +14,9 @@ export const calculateDistance = (lat1, lon1, lat2, lon2) => {
 
 export const calculateFare = (distance) => {
   const rateStructure = {
-    sevenCity: { baseFare: 400, perKmRate: 60, minimumFare: 800 },
-    sevenFlex: { baseFare: 500, perKmRate: 80, minimumFare: 1000 },
-    sevenVip: { baseFare: 1000, perKmRate: 90, minimumFare: 2000 },
+    sevenCity: { baseFare: 500, perKmRate: 80, minimumFare: 1000 },
+    sevenFlex: { baseFare: 650, perKmRate: 90, minimumFare: 1500 },
+    sevenVip: { baseFare: 1500, perKmRate: 100, minimumFare: 3000 },
   };
 
   // On applique la logique : distance effective = aller + moitié retour = distance * 1.5

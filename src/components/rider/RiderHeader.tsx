@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import React, { useEffect } from "react";
 import { useWS } from "@/service/WSProvider";
-import { useRiderStore } from "@/store/riderStore";
+import { riderStore } from "@/store/riderStore";
 import { useIsFocused } from "@react-navigation/native";
 import * as Location from "expo-location";
 import { riderStyles } from "@/styles/riderStyles";
@@ -21,7 +21,7 @@ import { Colors } from "@/utils/Constants";
 
 const RiderHeader = () => {
   const { disconnect, emit } = useWS();
-  const { setOnDuty, onDuty, setLocation } = useRiderStore();
+  const { setOnDuty, onDuty, setLocation } = riderStore();
   const isFocused = useIsFocused();
 
   const toggleOnDuty = async () => {
@@ -68,7 +68,7 @@ const RiderHeader = () => {
           <FontAwesome
             onPress={() => logout(disconnect)}
             name="power-off"
-            size={24}
+            size={15}
             color={Colors.text}
           />
 
@@ -100,7 +100,7 @@ const RiderHeader = () => {
 
       <View style={riderStyles?.earningContainer}>
         <CustomText fontSize={13} style={{ color: "#fff" }} fontFamily="Medium">
-          Today's Earnings
+          Bénéfices
         </CustomText>
 
         <View style={commonStyles?.flexRowGap}>

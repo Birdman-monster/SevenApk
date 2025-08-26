@@ -50,14 +50,18 @@ const MonCompte = () => {
     <View style={styles.container}>
       <View style={styles.header}>
         <TouchableOpacity onPress={pickImage}>
-          <Image
-            source={
-              typeof imageUri === "string" && imageUri.length > 0
-                ? { uri: imageUri }
-                : require("@/assets/icons/user-placeholder.png") // ✅ assure-toi que ce fichier existe
-            }
-            style={styles.avatar}
-          />
+          {user?.avatar ? (
+            <Image
+              source={{ uri: user.avatar }}
+              style={{ width: 80, height: 80, borderRadius: 40 }}
+            />
+          ) : (
+            <Image
+              source={require("@/assets/icons/user-placeholder.png")} // une image par défaut
+              style={{ width: 80, height: 80, borderRadius: 40 }}
+            />
+          )}
+
         </TouchableOpacity>
         <Text style={styles.name}>{user?.firstName} {user?.lastName}</Text>
         <Text style={styles.phone}>📞 {user?.phone}</Text>
@@ -76,7 +80,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#F9F9F9",
-    
+
   },
   header: {
     alignItems: "center",
@@ -90,7 +94,7 @@ const styles = StyleSheet.create({
     height: 90,
     borderRadius: 45,
     marginBottom: 10,
-    marginTop:19,
+    marginTop: 19,
   },
   name: {
     fontSize: 18,

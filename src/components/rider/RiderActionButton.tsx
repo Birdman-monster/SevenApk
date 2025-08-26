@@ -1,4 +1,4 @@
-import { View, Text } from "react-native";
+import { View, TouchableOpacity, Linking, StyleSheet } from "react-native";
 import React, { FC } from "react";
 import { Colors } from "@/utils/Constants";
 import { Ionicons } from "@expo/vector-icons";
@@ -8,6 +8,7 @@ import { commonStyles } from "@/styles/commonStyles";
 import CustomText from "../shared/CustomText";
 import { orderStyles } from "@/styles/riderStyles";
 import { RFValue } from "react-native-responsive-fontsize";
+import { Phone } from "lucide-react-native";
 
 const RiderActionButton: FC<{
   ride: any;
@@ -26,29 +27,52 @@ const RiderActionButton: FC<{
 
   return (
     <View style={rideStyles?.swipeableContaninerRider}>
+      {/* === Entête avec nom et numéro === */}
       <View style={commonStyles?.flexRowBetween}>
         <CustomText
           fontSize={11}
-          style={{ marginTop: 10, marginBottom: 3 }}
+          style={{ marginTop: 20, marginBottom: 6 }}
           numberOfLines={1}
           fontFamily="Medium"
         >
           Rencontrez le client
         </CustomText>
-        <CustomText
-          fontSize={11}
-          style={{ marginTop: 10, marginBottom: 3 }}
-          numberOfLines={1}
-          fontFamily="Medium"
-        >
-          +237{" "}
-          {ride?.customer?.phone &&
-            ride?.customer?.phone?.slice(0, 5) +
-              " " +
-              ride?.customer?.phone?.slice(5)}
-        </CustomText>
+
+        <View style={{ alignItems: "flex-start" }}>
+          {/* === Nom et prénom du client === */}
+          {ride?.customer?.firstName && ride?.customer?.lastName && (
+            <CustomText
+              fontSize={14} // ↑ augmente la taille
+              style={{ marginBottom: 6 }}
+              fontFamily="SemiBold" // ↑ gras
+              numberOfLines={1}
+            >
+              {ride?.customer?.firstName} {ride?.customer?.lastName}
+            </CustomText>
+          )}
+
+          {/* === Bouton téléphone === */}
+          <TouchableOpacity
+            style={styles.phoneButton}
+            onPress={() => Linking.openURL(`tel:+237${ride?.customer?.phone}`)}
+          >
+            <Phone size={16} color="#fff" style={{ marginRight: 6 }} />
+            <CustomText
+              fontSize={11}
+              style={styles.phoneText}
+              numberOfLines={1}
+              fontFamily="Medium"
+            >
+              +237{" "}
+              {ride?.customer?.phone &&
+                ride?.customer?.phone?.slice(0, 5) +
+                ride?.customer?.phone?.slice(5)}
+            </CustomText>
+          </TouchableOpacity>
+        </View>
       </View>
 
+      {/* === Pickup & Drop === */}
       <View style={orderStyles.locationsContainer}>
         <View style={orderStyles.flexRowBase}>
           <View>
@@ -88,6 +112,7 @@ const RiderActionButton: FC<{
         </View>
       </View>
 
+      {/* === Swipe Button === */}
       <SwipeButton
         containerStyles={rideStyles.swipeButtonContainer}
         height={30}
@@ -113,5 +138,25 @@ const RiderActionButton: FC<{
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  phoneButton: {
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: "#228B22",
+    paddingVertical: 8,
+    paddingHorizontal: 12,
+    borderRadius: 25,
+    alignSelf: "flex-start",
+    marginTop: 0,
+    marginBottom: 3,
+  },
+  phoneText: {
+    color: "#fff",
+    fontSize: 12,
+    fontWeight: "600",
+  },
+  
+});
 
 export default RiderActionButton;

@@ -127,31 +127,34 @@ const LiveRide = () => {
           }}
         />
       )}
+      <View style={{ marginBottom: 40 }}>
+        <RiderActionButton
+          ride={rideData}
+          title={
+            rideData?.status === "START"
+              ? "Arriver"
+              : rideData?.status === "ARRIVED"
+                ? "Course terminée"
+                : "Succès"
+          }
+          onPress={async () => {
+            if (rideData?.status === "START") {
+              setOtpModalVisible(true);
+              return;
+            }
+            const isSuccess = await updateRideStatus(rideData?._id, "COMPLETED");
+            if (isSuccess) {
+              Alert.alert("Congratulations! you rock🎉");
+              resetAndNavigate("/rider/home");
+            } else {
+              Alert.alert("There was an error");
+            }
+          }}
+          color="#228B22"
 
-      <RiderActionButton
-        ride={rideData}
-        title={
-          rideData?.status === "START"
-            ? "ARRIVED"
-            : rideData?.status === "ARRIVED"
-            ? "COMPLETED"
-            : "SUCCESS"
-        }
-        onPress={async () => {
-          if (rideData?.status === "START") {
-            setOtpModalVisible(true);
-            return;
-          }
-          const isSuccess = await updateRideStatus(rideData?._id, "COMPLETED");
-          if (isSuccess) {
-            Alert.alert("Congratulations! you rock🎉");
-            resetAndNavigate("/rider/home");
-          } else {
-            Alert.alert("There was an error");
-          }
-        }}
-        color="#228B22"
-      />
+
+        />
+      </View>
 
       {isOtpModalVisible && (
         <OtpInputModal
